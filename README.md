@@ -2,4 +2,4 @@
 
 ## To execute the script,
 
-`code` perl change-mac.pl eth0
+`perl change-mac.pl eth0` 
