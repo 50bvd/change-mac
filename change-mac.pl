@@ -1,20 +1,20 @@
 #!/usr/bin/perl
 
-# Récupérer le nom de l'interface réseau à partir de la ligne de commande
+# Find network interface
 $interface = $ARGV[0];
 
-# Vérifier que l'interface a été spécifiée
+# Check interface
 if (!defined($interface)) {
     print "Usage: change-mac.pl <interface>\n";
     exit;
 }
 
-# Générer une nouvelle adresse MAC aléatoire
+# Generate new mac address
 $new_mac = join(':', map { sprintf "%02x", rand(256) } (1..6));
 
-# Exécuter la commande pour changer l'adresse MAC de l'interface
+# Inject new mac address
 system("ifconfig $interface down hw ether $new_mac");
 system("ifconfig $interface up");
 
-# Afficher la nouvelle adresse MAC
+# Display new mac address
 print "Adresse MAC de l'interface $interface changée en $new_mac\n";
